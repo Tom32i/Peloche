@@ -1,0 +1,236 @@
+@import url("main.css");
+@import url("normalize.css");
+
+@speed: 500ms;
+
+body
+{
+	background: #000000;
+	overflow: hidden;
+	font-family: "Raleway",sans-serif;
+	font-weight: 900;
+
+	&.loading
+	{
+		background: url("../img/load.gif") no-repeat fixed center center #000000;
+	}
+}
+
+.loading .case
+{
+	opacity: 0;
+}
+
+#log{
+	background: #fff;
+	color: #000;
+	width: 100%;
+	font-size: 12px;
+	position: fixed;
+	top: 0;
+	z-index: 99;
+}
+
+#main{
+	width: 100%;
+	height: 100%;
+}
+.case
+{
+	opacity: 1;
+	width: percentage(1/3);
+	height: 50%;
+	background-position: center;
+	text-align: center;
+	vertical-align: middle;
+	color: #ffffff;
+	display: block;
+	float: left;
+	position: relative;
+	overflow: hidden;
+	display: block;
+	.transition (opacity @speed);
+
+	& > *
+	{
+		position: absolute;
+	}
+
+	h1
+	{
+		font-size: 2.5em;
+		z-index: 10;
+		width: 100%;
+		left: 0;
+		text-align: center;
+		background: rgba(0,0,0,0.5);
+		bottom: 0;
+		margin: 0;
+		padding: 0;
+		.transition (background @speed, color @speed);
+	}
+
+	.nb
+	{
+		opacity: 0.7;
+		z-index: 4;
+	}
+	.color
+	{
+		z-index: 5;
+		opacity: 0;
+	}
+
+	&.active
+	{
+		h1
+		{
+			background: rgba(0,0,0,0.8);
+			color: #ffffff;
+		}
+		.nb
+		{
+			opacity: 0;
+		}
+		.color
+		{
+			opacity: 1;
+		}
+	}
+
+	.background
+	{
+		width: 100%;
+		height: 100%;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+		.transition (opacity @speed);
+	}
+}
+
+#mail .background.color{ background-image: url("../img/color/mail.jpg");}
+#twitter .background.color{ background-image: url("../img/color/twitter.jpg");}
+#facebook .background.color{ background-image: url("../img/color/facebook.jpg");}
+#senscritique .background.color{ background-image: url("../img/color/senscritique.jpg");}
+#normalday .background.color{ background-image: url("../img/color/normalday.jpg");}
+#px500 .background.color{ background-image: url("../img/color/500px.jpg");}
+#mail .background.nb{ background-image: url("../img/nb/mail.jpg");}
+#twitter .background.nb{ background-image: url("../img/nb/twitter.jpg");}
+#facebook .background.nb{ background-image: url("../img/nb/facebook.jpg");}
+#senscritique .background.nb{ background-image: url("../img/nb/senscritique.jpg");}
+#normalday .background.nb{ background-image: url("../img/nb/normalday.jpg");}
+#px500 .background.nb{ background-image: url("../img/nb/500px.jpg");}
+#mail{ .transition-delay (200ms); }
+#twitter{ .transition-delay (400ms); }
+#facebook{ .transition-delay (600ms); }
+#senscritique{ .transition-delay (800ms); }
+#normalday{ .transition-delay (1000ms); }
+#px500{ .transition-delay (1200ms); }
+#facebook .background{background-position: center right;}
+#twitter .background{background-position: center left;}
+.transition (@property)
+{
+	transition: @property;
+	-moz-transition: @property; /* Firefox 4 */
+	-webkit-transition: @property; /* Safari and Chrome */
+	-o-transition: @property; /* Opera */
+}
+.transition (@property, @property2)
+{
+	transition: @property, @property2;
+	-moz-transition: @property, @property2; /* Firefox 4 */
+	-webkit-transition: @property, @property2; /* Safari and Chrome */
+	-o-transition: @property, @property2; /* Opera */
+}
+.transition-delay (@delay)
+{
+	transition-delay: @delay;
+	-moz-transition-delay: @delay;
+	-webkit-transition-delay: @delay;
+	-o-transition-delay: @delay;
+}
+.cadre (@size)
+{
+	-webkit-box-shadow:@size @size 0 #000000 inset, -@size -@size 0 #000000 inset;
+	-moz-box-shadow:@size @size 0 #000000 inset, -@size -@size 0 #000000 inset;
+	box-shadow:@size @size 0 #000000 inset, -@size -@size 0 #000000 inset;
+}
+
+@media (max-width:1024px)
+{
+	.case h1
+	{
+		font-size: 2em;
+	}
+}
+@media (min-width: 769px)
+{
+	#main:hover
+	{
+		.case
+		{
+			h1
+			{
+				color: #999999;
+			}
+			.nb
+			{
+				opacity: 0.4;
+			}
+
+			&:hover
+			{
+				h1
+				{
+					background: rgba(0,0,0,0.8);
+					color: #ffffff;
+				}
+				.nb
+				{
+					opacity: 0;
+				}
+				.color
+				{
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width:768px)
+{
+	a{
+		text-decoration: none;
+	}
+	body
+	{
+		overflow: auto;
+		
+		#main, #main:hover
+		{
+			width: 100%;
+			height: 100%;
+
+			.case, .case:hover
+			{
+				width: 100%;
+				height: 200px;
+				display: block;
+				opacity: 1;
+				
+				h1
+				{
+					color: #ffffff;
+					background: rgba(0,0,0,0.8);
+				}
+
+				.background.nb, .background.nb:hover
+				{
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
